@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 30px;
+}
+
+#main-container {
+    box-sizing: border-box;
+    width: 1024px;
+    height: 768px;
+    background: yellow;
+    padding: 20px;
+    margin: auto;
+}
+
+#canvas-container {
+    width: 98%;
+    height: 70%;
+    background-color: blue;
+    margin: auto;
+}
+
+#hud-container {
+    width: 98%;
+    height: 28%;
+    background-color: springgreen;
+    margin: auto;
+    margin-top: 10px;
+
+}
+
+
+
+/* ----CARD--TEST------------------------------------------------------ */
+#heroes-container {
+    width: 80%;
+    height: 90%;
+    background-color: blue;
+}
+
+.hero-card {
+    background-color: transparent;
+    width: 24%;
+    height: 100%;
+    border: 1px solid orange;
+    perspective: 1000px;
+    cursor: pointer;
+    /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.hero-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* das über JS steuern */
+.hero-card:hover .hero-card-inner {
+    transform: rotateX(180deg);
+}
+
+.hero-card-front,
+.hero-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+}
+
+.hero-card-front {
+    background-color: #bbb;
+    color: black;
+}
+
+.hero-card-back {
+    background-color: dodgerblue;
+    color: white;
+    transform: rotateY(180deg);
+}
