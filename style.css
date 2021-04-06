@@ -1,7 +1,12 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    padding-top: 30px;
+}
+
+body {
+    background-color: #1e2121;
+    height: 100vh;
+    width: 100vw;
 }
 
 #main-container {
@@ -9,42 +14,41 @@ body {
     width: 1024px;
     height: 768px;
     background: yellow;
-    padding: 20px;
+    padding: 5px;
     margin: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #canvas-container {
-    width: 98%;
-    height: 70%;
+    width: 1015px;
+    height: 560px;
     background-color: blue;
     margin: auto;
 }
-
-#hud-container {
-    width: 98%;
-    height: 28%;
-    background-color: springgreen;
-    margin: auto;
-    margin-top: 10px;
-
-}
-
 
 
 /* ----CARD--TEST------------------------------------------------------ */
 #heroes-container {
-    width: 80%;
-    height: 90%;
-    background-color: blue;
+    width: 1015px;
+    height: 198px;
+    background-color: #101e27;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 5px;
 }
 
 .hero-card {
     background-color: transparent;
-    width: 24%;
-    height: 100%;
-    border: 1px solid orange;
-    perspective: 1000px;
+    width: 248.5px;
+    height: 187px;
+    margin-top: 5px;
     cursor: pointer;
+    perspective: 1000px;
     /* Remove this if you don't want the 3D effect */
 }
 
@@ -82,4 +86,46 @@ body {
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
+}
+
+.test {
+    width: 35px;
+    height: 35px;
+    background-color: violet;
+}
+
+
+
+@media only screen and (min-width: 1365px) and (min-height: 750px) {
+    body {
+        background-color: springgreen;
+    }
+
+    #main-container {
+        box-sizing: border-box;
+        width: 1169px;
+        height: 876px;
+    }
+
+    #canvas-container {
+        width: 1160px;
+        height: 640px;
+    }
+
+    #heroes-container {
+        width: 1150px;
+        height: 226px;
+    }
+
+    .hero-card {
+        width: 283px;
+        height: 215px;
+    }
+
+    .test {
+        width: 40px;
+        height: 40px;
+        background-color: orangered;
+    }
+    
 }
