@@ -36,25 +36,9 @@
     <div class="center"><button>Start Game</button></div>
     <script>
       const startBtn = document.querySelector('button');
-      const elem = document.documentElement;
-
       startBtn.onclick = () => {
-        openFullscreen();
         window.open('game.html', '_self');
       };
-
-      /* View in fullscreen */
-      function openFullscreen() {
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-          /* Safari */
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-          /* IE11 */
-          elem.msRequestFullscreen();
-        }
-      }
     </script>
   </body>
 </html>
