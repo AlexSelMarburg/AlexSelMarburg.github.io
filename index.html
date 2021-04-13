@@ -4,46 +4,57 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="app.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        position: relative;
+      }
+
+      .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+
+      button {
+        background-color: yellow;
+        width: 200px;
+        height: 60px;
+        padding: 5px;
+        font-size: 30px;
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
-    <div id="main-container">
-      <div id="canvas-container">
-          <div class="test"></div>
-          <!-- <canvas id="canvas"></canvas> -->
-        </div>
-        <div id="heroes-container">
-          <div class="hero-card">
-            <div class="hero-card-inner">
-              <div class="hero-card-front"></div>
-              <div class="hero-card-back">
-              </div>
-            </div>
-          </div>
-          <div class="hero-card">
-            <div class="hero-card-inner">
-              <div class="hero-card-front"></div>
-              <div class="hero-card-back">
-              </div>
-            </div>
-          </div>
-          <div class="hero-card">
-            <div class="hero-card-inner">
-              <div class="hero-card-front"></div>
-              <div class="hero-card-back">
-              </div>
-            </div>
-          </div>
-          <div class="hero-card">
-            <div class="hero-card-inner">
-              <div class="hero-card-front"></div>
-              <div class="hero-card-back">
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+    <div class="center"><button>Start Game</button></div>
+    <script>
+      const startBtn = document.querySelector('button');
+      const elem = document.documentElement;
+
+      startBtn.onclick = () => {
+        openFullscreen();
+        window.open('game.html', '_self');
+      };
+
+      /* View in fullscreen */
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          /* Safari */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          /* IE11 */
+          elem.msRequestFullscreen();
+        }
+      }
+    </script>
   </body>
 </html>
