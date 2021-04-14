@@ -4,36 +4,63 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       body {
         margin: 0;
         padding: 0;
         height: 100vh;
+        width: 100vw;
         position: relative;
+
+        background: url('assets/title_screen/titleBG.jpg');
       }
 
       .center {
+        width: 300px;
+        height: 150px;
         margin: 0;
         position: absolute;
-        top: 50%;
+        top: 48%;
         left: 50%;
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+
+        display: flex;
+        flex-wrap: wrap;
       }
 
       button {
+        font-family: 'Marcellus SC', serif;
+        color: white;
+        background: url('assets/title_screen/buttonBG.jpg');
+        cursor: pointer;
         background-color: yellow;
-        width: 200px;
+        width: 300px;
         height: 60px;
         padding: 5px;
         font-size: 30px;
       }
+
+      button:hover {
+        font-size: 34px;
+      }
+
+
+      button:focus {outline:0;}
     </style>
-    <title>Document</title>
+    <title>MyGame | Title Screen</title>
   </head>
   <body>
-    <div class="center"><button>Start Game</button></div>
+    <div class="center">
+      <button id="btnStartNewGame">Start New Game</button>
+      <button id="btnContinueSaveGame">Continue</button>
+    </div>
     <script>
       const startBtn = document.querySelector('button');
       startBtn.onclick = () => {
