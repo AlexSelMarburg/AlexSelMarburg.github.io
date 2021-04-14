@@ -19,8 +19,28 @@ function toggleFullscreen(event) {
         return false;
     };
 
-    isFullscreen ? btnToggleFullScreen.style.backgroundImage="url(assets/menu-bar/fullscreen.png)" : btnToggleFullScreen.style.backgroundImage="url(assets/menu-bar/exitFullscreen.png)"
+    isFullscreen ? btnToggleFullScreen.style.backgroundImage = "url(assets/menu-bar/fullscreen.png)" : btnToggleFullScreen.style.backgroundImage = "url(assets/menu-bar/exitFullscreen.png)"
     isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
 }
 
 btnToggleFullScreen.onclick = toggleFullscreen;
+
+//---toggle-card-flip----------------------------------------------------------
+
+const btnInventory = document.querySelector('#toggle-inventory-btn');
+
+btnInventory.onclick = function (evt) {
+    const heroCards = document.querySelectorAll('.hero-card');
+    const timer = ms => new Promise(res => setTimeout(res, ms))
+    btnInventory.disabled = true;
+
+    async function flip() { 
+        for (let i = 0; i < heroCards.length; i++) {
+            heroCards[i].querySelector(".hero-card-inner").classList.toggle("flip-card");
+            await timer(260);
+        }
+        btnInventory.disabled = false;
+    }
+
+    flip();
+}
