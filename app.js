@@ -37,7 +37,7 @@ btnInventory.onclick = function (evt) {
     async function flip() { 
         for (let i = 0; i < heroCards.length; i++) {
             heroCards[i].querySelector(".hero-card-inner").classList.toggle("flip-card");
-            await timer(260);
+            await timer(210);
         }
         btnInventory.disabled = false;
     }
