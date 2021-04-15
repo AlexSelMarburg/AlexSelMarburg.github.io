@@ -180,15 +180,17 @@ button:focus {
     background-image: url('assets/hero-card/hero_gui/hero_card_back_bg.jpg');
 
     display: grid;
-    grid-gap: 5px;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    /* grid-gap: 5px; */
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     justify-items: center;
     align-items: center;
 
-    padding: 10px;
+    padding: 5px;
 }
 
+.hero-card-back .scroll_slot,
+.hero-card-back .potion_slot,
 .hero-card-back .helmet_slot,
 .hero-card-back .neck_slot,
 .hero-card-back .bracers_slot,
@@ -204,68 +206,110 @@ button:focus {
 .hero-card-back .ring_1_slot,
 .hero-card-back .ring_2_slot,
 .hero-card-back .weapon_slot {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    opacity: 20%;
+    opacity: 40%;
 }
 
 .hero-card-back .helmet_slot {
     background-image: url('assets/hero_gear/helmet.png');
+    grid-area: 1 / 1 / span 2 / span 2;
 }
-.hero-card-back .gloves_slot {
-    background-image: url('assets/hero_gear/gloves.png');
-}
-.hero-card-back .bracers_slot {
-    background-image: url('assets/hero_gear/bracers.png');
-}
+
 .hero-card-back .shoulder_slot {
     background-image: url('assets/hero_gear/shoulder.png');
+    grid-area: 1 / 3 / span 2 / span 2;
 }
+
+.hero-card-back .bracers_slot {
+    background-image: url('assets/hero_gear/bracers.png');
+    grid-area: 3 / 1 / span 2 / span 2;
+}
+
+.hero-card-back .gloves_slot {
+    background-image: url('assets/hero_gear/gloves.png');
+    grid-area: 3 / 3 / span 2 / span 2;
+}
+
 .hero-card-back .chest_slot {
     background-image: url('assets/hero_gear/chest.png');
+    grid-area: 5 / 1 / span 2 / span 2;
 }
-.hero-card-back .cape_slot {
-    background-image: url('assets/hero_gear/cape.png');
-}
-.hero-card-back .belt_slot {
-    background-image: url('assets/hero_gear/belt.png');
-}
-.hero-card-back .trinket_slot {
-    background-image: url('assets/hero_gear/trinket.png');
-}
+
 .hero-card-back .pants_slot {
     background-image: url('assets/hero_gear/pants.png');
+    grid-area: 5 / 3 / span 2 / span 2;
+
 }
+
+.hero-card-back .belt_slot {
+    background-image: url('assets/hero_gear/belt.png');
+    grid-area: 7 / 1 / span 2 / span 2;
+}
+
 .hero-card-back .boots_slot {
     background-image: url('assets/hero_gear/boots.png');
+    grid-area: 7 / 3 / span 2 / span 2;
+
 }
 
 .hero-card-back .weapon_slot {
     background-image: url('assets/hero_gear/weapon.png');
+    grid-area: 1 / 6 / span 4 / span 4;
+    width: 80px;
+    height: 80px;
 }
+
 .hero-card-back .shield_slot {
     background-image: url('assets/hero_gear/shield.png');
+    grid-area: 1 / 10 / span 4 / span 4;
+    width: 80px;
+    height: 80px;
 }
+
+.hero-card-back .potion_slot {
+    background-image: url('assets/hero_gear/potion.png');
+    grid-area: 4 / 6 / span 4 / span 4;
+
+}
+
+.hero-card-back .scroll_slot {
+    background-image: url('assets/hero_gear/scroll.png');
+    grid-area: 4 / 10 / span 4 / span 4;
+}
+
+.hero-card-back .neck_slot,
+.hero-card-back .ring_1_slot,
+.hero-card-back .ring_2_slot,
+.hero-card-back .cape_slot {
+    width: 34px;
+    height: 34px;
+}
+
 .hero-card-back .neck_slot {
     background-image: url('assets/hero_gear/neck.png');
-    width: 42px;
-    height: 42px;
+    grid-area: 7 / 6 / span 2 / span 2;
 }
+
 .hero-card-back .ring_1_slot,
 .hero-card-back .ring_2_slot {
     background-image: url('assets/hero_gear/ring.png');
-    width: 42px;
-    height: 42px;
 }
 
-/* wie grid-area funktionier */
-/* row-cell-start / col-cell-start / rows-span / col-span */
-/* .hero-hero-intellect-difference {
-    grid-area: 5 / 4 / span 1 / span 1;
-} */
+.hero-card-back .ring_1_slot {
+    grid-area: 7 / 8 / span 2 / span 2;
+}
 
+.hero-card-back .ring_2_slot {
+    grid-area: 7 / 10 / span 2 / span 2;
+}
+
+.hero-card-back .cape_slot {
+    background-image: url('assets/hero_gear/cape.png');
+    grid-area: 7 / 12 / span 2 / span 2;
+}
 
 /* menu bar conten------------------------------------------------- */
 #menu-bar {
