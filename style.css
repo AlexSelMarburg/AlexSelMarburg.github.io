@@ -36,6 +36,61 @@ button:focus {
     outline: 0;
 }
 
+/* Hero Data Cards------------------------------------------------------- */
+.hero-data-card {
+    width: 300px;
+    height: 440px;
+    background-image: url('assets/hero-stats/hero-stats-card.png');
+    border: solid 1px #2A2220;
+}
+
+#hero_1_data {
+    position: fixed;
+    bottom: 380px;
+    left: 16px;
+    z-index: 3;
+}
+
+/* Party-Invetory-------------------------------------------------------- */
+#party-inventory {
+    width: calc(100% - 12px);
+    height: 60px;
+    background-color: #F4DAA1;
+    border: 5px solid #2A2220;
+    border-radius: 5px;
+    padding: 5px;
+
+    position: fixed;
+    bottom: 280px;
+    right: 6px;
+    z-index: 3;
+
+    overflow: hidden;
+    display: grid;
+    grid-gap: 0 6px;
+    grid-template-columns: repeat(28, 40px);
+}
+
+.fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 150ms, opacity 150ms;
+}
+
+.fadeIn {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 150ms;
+}
+
+.inventory-cell {
+    width: 40px;
+    height: 40px;
+
+    background-image: url('assets/party_inventory/inventory_cell.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 
 /* ---HEROES-CARD-------------------------------------------------------- */
 #heroes-container {
@@ -91,7 +146,6 @@ button:focus {
 
     border-radius: 5px;
 }
-
 
 /* zum testen der breite/höhe einer zelle auf dem canvas */
 .test {
@@ -180,7 +234,6 @@ button:focus {
     background-image: url('assets/hero-card/hero_gui/hero_card_back_bg.jpg');
 
     display: grid;
-    /* grid-gap: 5px; */
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat(8, 1fr);
     justify-items: center;
@@ -210,7 +263,7 @@ button:focus {
     height: 40px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    opacity: 40%;
+    opacity: 35%;
 }
 
 .hero-card-back .helmet_slot {

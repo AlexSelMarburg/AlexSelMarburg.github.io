@@ -1,5 +1,7 @@
 "use strict";
 
+let inFight = false;
+
 //--toggle-fullscreen----------------------------------------------------
 const btnToggleFullScreen = document.querySelector("#toggle-screen-size-btn")
 
@@ -32,15 +34,29 @@ const btnInventory = document.querySelector('#toggle-inventory-btn');
 btnInventory.onclick = function (evt) {
     const heroCards = document.querySelectorAll('.hero-card');
     const timer = ms => new Promise(res => setTimeout(res, ms))
+    const partyInventory = document.querySelector('#party-inventory');
+
     btnInventory.disabled = true;
 
-    async function flip() { 
+    async function flip() {
         for (let i = 0; i < heroCards.length; i++) {
             heroCards[i].querySelector(".hero-card-inner").classList.toggle("flip-card");
             await timer(210);
         }
+        await timer(400);
         btnInventory.disabled = false;
     }
 
+    async function toggleInventory() {
+
+        if (!inFight) {
+            await timer(1300);
+            partyInventory.classList.toggle("fadeOut");
+            partyInventory.classList.toggle("fadeIn");
+        }
+
+    }
+
     flip();
+    toggleInventory();
 }
