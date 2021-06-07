@@ -35,35 +35,51 @@
         flex-wrap: wrap;
       }
 
-      button {
+      .btn {
         font-family: 'Marcellus SC', serif;
         color: white;
         background: url('assets/title_screen/buttonBG.jpg');
         cursor: pointer;
-        background-color: yellow;
         width: 300px;
         height: 60px;
         padding: 5px;
         font-size: 30px;
       }
 
-      button:hover {
+      .btn:hover {
         font-size: 34px;
       }
 
-
-      button:focus {outline:0;}
+      button:focus {
+        outline: 0;
+      }
     </style>
     <title>MyGame | Title Screen</title>
   </head>
   <body>
     <div class="center">
-      <button id="btnStartNewGame">Start New Game</button>
-      <button id="btnContinueSaveGame">Continue</button>
+      <button id="btnStartNewGame" class="btn">Neues Spiel</button>
+      <button id="btnContinueSaveGame" class="btn">Spiel Fortsetzen</button>
     </div>
     <script>
+
       const startBtn = document.querySelector('button');
+      const continueBtn = document.querySelector('#btnContinueSaveGame');
+
+      document.addEventListener('DOMContentLoaded', function (e) {
+        if (!JSON.parse(localStorage.getItem('savegame'))) {
+          continueBtn.disabled = true;
+          continueBtn.style.background = 'grey';
+          continueBtn.style.color = 'darkgrey';
+          continueBtn.style.cursor = 'default';
+        }
+      });
+
       startBtn.onclick = () => {
+        window.open('hero-pick.html', '_self');
+      };
+
+      continueBtn.onclick = () => {
         window.open('game.html', '_self');
       };
     </script>

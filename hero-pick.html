@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <title>Document</title>
+
+    <style>
+      *,
+      *::after,
+      *::before {
+        background-color: #332824;
+        box-sizing: border-box;
+      }
+
+      #main-container {
+        background-color: #fff;
+        width: 620px;
+        height: 400px;
+        padding: 10px;
+
+        display: flex;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #heroes-container {
+        height: 380px;
+        width: 380px;
+        background-color: yellow;
+      }
+
+      #picked-heroes-container {
+        height: 380px;
+        width: 220px;
+        margin-left: 10px;
+
+        padding: 5px;
+        background-color: aqua;
+      }
+
+      .button {
+        background-color: #332824;
+        color: white;
+        font-family: 'Marcellus SC', serif;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      #start-game-btn {
+        position: absolute;
+        bottom: 15px;
+        left: 400px;
+
+        width: 205px;
+      }
+
+      .start-game-btn-disabled {
+        background-color: grey;
+        color: darkgrey;
+        cursor: default;
+        font-family: 'Marcellus SC', serif;
+        font-size: 20px;
+      }
+
+      #hero-display {
+        height: 341px;
+        background-color: green;
+        padding: 5px;
+
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #hero-display #hero-portrait {
+        width: 100px;
+        height: 100px;
+        background-image: url('');
+        background-repeat: no-repeat;
+        background-size: 100px 100px;
+        margin-bottom: 5px;
+      }
+
+      #hero-display #hero-name {
+        padding: 5px;
+        background-color: yellow;
+        height: 100px;
+        width: 263px;
+
+        font-size: 24px;
+        letter-spacing: 1px;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      #hero-display #hero-description {
+        width: 100%;
+        height: 225px;
+        background-color: #101121;
+        color: white;
+        padding: 5px;
+      }
+
+      #select-hero-buttons {
+        display: flex;
+        justify-content: space-between;
+        background-color: orange;
+
+        position: relative;
+        bottom: 5px;
+        left: 50%;
+        transform: translate(-50%, 12px);
+      }
+
+      .picked-hero {
+        width: 100%;
+        margin-bottom: 5px;
+        background-color: yellow;
+        height: 80px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 30px;
+        padding-top: 21px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="heroes-container">
+        <div id="hero-display">
+          <div id="hero-portrait"></div>
+          <div id="hero-name"></div>
+          <div id="hero-description"></div>
+        </div>
+        <div id="select-hero-buttons">
+          <button type="button" id="pre-hero-btn" class="button">&#60;</button>
+          <button type="button" class="button" id="add-to-party-btn">
+            Zur Gruppe hinzufügen
+          </button>
+          <button type="button" id="next-hero-btn" class="button">&#62;</button>
+        </div>
+      </div>
+
+      <div id="picked-heroes-container"></div>
+      <button type="button" id="start-game-btn">Gruppe auswählen</button>
+    </div>
+
+    <script>
+      'use strict';
+
+      const titleScreenMusic = document.createElement('audio');
+      titleScreenMusic.src = 'assets/sfx/title_music.mp3';
+
+      const startGameBtn = document.getElementById('start-game-btn');
+      const heroDisplay = document.getElementById('hero-display');
+      const preHeroBtn = document.getElementById('pre-hero-btn');
+      const nextHeroBtn = document.getElementById('next-hero-btn');
+      const addToPartyBtn = document.getElementById('add-to-party-btn');
+
+      let heroIndex = 0;
+
+      document.addEventListener('DOMContentLoaded', function (e) {
+
+        titleScreenMusic.play();
+        startGameBtn.disabled = true;
+        // startGameBtn.classList.remove('button');
+        startGameBtn.classList.add('start-game-btn-disabled')
+
+        fillHeroData(0);
+      });
+
+      nextHeroBtn.addEventListener('click', () => {
+        heroIndex >= heroesArr.length - 1 ? (heroIndex = 0) : ++heroIndex;
+
+        fillHeroData(heroIndex);
+      });
+
+      preHeroBtn.addEventListener('click', () => {
+        heroIndex <= 0 ? (heroIndex = heroesArr.length - 1) : --heroIndex;
+
+        fillHeroData(heroIndex);
+      });
+
+      addToPartyBtn.addEventListener('click', () => {
+        const pickedHeroesContainer = document.getElementById(
+          'picked-heroes-container'
+        );
+
+        if (pickedHeroesArr.length <= 3) {
+          pickedHeroesArr.push(heroesArr[heroIndex]);
+          heroesArr.splice(heroesArr.indexOf(heroesArr[heroIndex]), 1);
+
+          heroIndex = 0;
+          fillHeroData(heroIndex);
+
+          // nextHeroBtn.click();
+
+          while (pickedHeroesContainer.firstChild) {
+            pickedHeroesContainer.removeChild(pickedHeroesContainer.firstChild);
+          }
+
+          pickedHeroesArr.forEach((pickedHero) => {
+            const pickedHeroDiv = document.createElement('div');
+            pickedHeroDiv.classList.add('picked-hero');
+            pickedHeroDiv.textContent = pickedHero.class;
+
+            pickedHeroesContainer.appendChild(pickedHeroDiv);
+          });
+
+          if (pickedHeroesArr.length === 4) {
+            startGameBtn.disabled = false;
+            startGameBtn.classList.add('button')
+            startGameBtn.classList.remove('start-game-btn-disabled');
+          }
+        }
+      });
+
+      startGameBtn.addEventListener('click', () => {
+        localStorage.setItem("savegame", JSON.stringify(pickedHeroesArr));
+        window.open('game.html', '_self');
+      })
+
+      function fillHeroData(heroNumber) {
+        const heroPortrait = document.getElementById('hero-portrait');
+        const heroDescription = document.getElementById('hero-description');
+        const heroName = document.getElementById('hero-name');
+
+        heroPortrait.style.backgroundImage = heroesArr[heroNumber].portrait;
+
+        heroDescription.textContent = heroesArr[heroNumber].description;
+
+        heroName.textContent = heroesArr[heroNumber].name;
+      }
+
+      const pickedHeroesArr = [];
+      const heroesArr = [
+        {
+          name: 'Anatol Hentaimann',
+          portrait: 'url(/assets/hero-card/hero_portraits/anatol4.png',
+          class: 'monk',
+          description:
+            'Mönch: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quam sapiente magni beatae incidunt eos ab vitae hic totam exercitationem',
+          stats: {
+            constitution: 10,
+            strength: 8,
+            dextarity: 8,
+            intellect: 14,
+          },
+        },
+
+        {
+          name: 'Alexey Sturmgeist',
+          class: 'paladin',
+          portrait: 'url(/assets/hero-card/hero_portraits/alexey.png',
+          description:
+            'Paladin: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quam sapiente magni beatae incidunt eos ab vitae hic totam exercitationem',
+          stats: {
+            constitution: 11,
+            strength: 10,
+            dextarity: 8,
+            intellect: 11,
+          },
+        },
+
+        {
+          name: 'Olga Machslochov',
+          class: 'ranger',
+          portrait: 'url(/assets/hero-card/hero_portraits/olga.png',
+          description:
+            'Ranger: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quam sapiente magni beatae incidunt eos ab vitae hic totam exercitationem',
+          stats: {
+            constitution: 11,
+            strength: 10,
+            dextarity: 8,
+            intellect: 11,
+          },
+        },
+
+        {
+          name: 'Anna Futtrubeln',
+          class: 'priest',
+          portrait: 'url(/assets/hero-card/hero_portraits/anne.png',
+          description:
+            'Priest: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quam sapiente magni beatae incidunt eos ab vitae hic totam exercitationem',
+          stats: {
+            constitution: 11,
+            strength: 10,
+            dextarity: 8,
+            intellect: 11,
+          },
+        },
+
+        {
+          name: 'Sophitia',
+          class: 'priest',
+          portrait: 'url(/assets/hero-card/hero_portraits/warrior.png',
+          description:
+            'Krieger: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quam sapiente magni beatae incidunt eos ab vitae hic totam exercitationem',
+          stats: {
+            constitution: 11,
+            strength: 10,
+            dextarity: 8,
+            intellect: 11,
+          },
+        },
+
+        {
+          name: 'Merlin',
+          class: 'mage',
+          portrait: 'url(/assets/hero-card/hero_portraits/wizard.png',
+          description:
+            'Magier: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quam sapiente magni beatae incidunt eos ab vitae hic totam exercitationem',
+          stats: {
+            constitution: 11,
+            strength: 10,
+            dextarity: 8,
+            intellect: 11,
+          },
+        },
+      ];
+    </script>
+  </body>
+</html>
